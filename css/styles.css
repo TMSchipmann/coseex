@@ -784,7 +784,7 @@ body,
 }
 
 .hero-proof {
-  gap: 14px;
+  gap: clamp(28px, 4vw, 54px);
   padding-top: 0;
   border: 0;
 }
@@ -792,11 +792,11 @@ body,
 .hero-proof div,
 .hero-proof div + div {
   min-width: 0;
-  padding: 15px 18px;
-  border: 1px solid rgba(255, 255, 255, 0.68);
-  border-radius: 16px;
-  background: var(--neu-bg);
-  box-shadow: var(--neu-raised-small);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .services-grid {
@@ -1144,9 +1144,9 @@ body,
   .hero-proof div,
   .hero-proof div + div {
     gap: 5px;
-    padding: 13px 8px;
-    border-radius: 14px;
-    box-shadow: 5px 5px 12px rgba(155, 170, 174, 0.25), -5px -5px 12px rgba(255, 255, 255, 0.9);
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
     text-align: center;
   }
 
