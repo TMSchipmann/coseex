@@ -12,13 +12,12 @@ Landing page B2B estática y responsive, lista para GitHub Pages o Cloudflare Pa
 - `assets/hero-logistica-coseex.png`: fotografía editorial generada para el hero.
 - `assets/clientes/`: logos corporativos optimizados para el carrusel continuo.
 
-## Pendientes antes de publicar
+## Pendientes y puesta en marcha
 
-1. Reemplazar `+56 9 0000 0000` y `56900000000` por el teléfono real.
-2. Confirmar o reemplazar `contacto@coseex.cl`.
-3. Agregar el video como `assets/video-coseex.mp4` y habilitar su `<source>` dentro del contenedor visible del hero. La fotografía actual funciona como portada mientras tanto.
-4. El formulario envía por AJAX a FormSubmit sin abrir la aplicación de correo. Tras publicarlo, hacer un envío de prueba y **confirmar el enlace de activación recibido en `contacto@coseex.cl`**. Hasta activar la dirección, FormSubmit no entregará los mensajes al buzón. Revisar también spam y confirmar que la casilla exista.
-5. Los datos del formulario pasan por FormSubmit antes de llegar al correo; revisar esta decisión si se requiere un tratamiento de datos propio o se migra a un hosting con backend.
+1. Agregar el video como `assets/video-coseex.mp4` y habilitar su `<source>` dentro del contenedor visible del hero. La fotografía actual funciona como portada mientras tanto.
+2. El formulario envía por AJAX a FormSubmit sin abrir la aplicación de correo. Hacer un envío de prueba y **confirmar el enlace de activación recibido en `contacto@coseex.cl`**. Hasta activar la dirección, FormSubmit no entregará los mensajes al buzón. Revisar también spam.
+3. Verificar la configuración DNS del correo: actualmente las consultas públicas de `coseex.cl` no muestran registros MX, aunque la casilla se reporta operativa.
+4. Los datos del formulario pasan por FormSubmit antes de llegar al correo; revisar esta decisión si se requiere un tratamiento de datos propio o se migra a un hosting con backend.
 
 Para revisar localmente:
 
