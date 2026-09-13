@@ -12,6 +12,7 @@
   const contactClose = document.querySelector("[data-contact-close]");
   const form = document.querySelector("[data-contact-form]");
   const formStatus = document.querySelector("[data-form-status]");
+  const formSubmit = form?.querySelector('button[type="submit"]');
 
   const safeStorage = {
     get(key) {
@@ -104,23 +105,57 @@
     });
   });
 
-  form?.addEventListener("submit", (event) => {
+  form?.addEventListener("submit", async (event) => {
     event.preventDefault();
-    if (!form.reportValidity()) return;
+    if (!form.reportValidity() || formSubmit?.disabled) return;
 
     const values = Object.fromEntries(new FormData(form).entries());
-    const subject = encodeURIComponent(`Solicitud web Coseex - ${values.empresa}`);
-    const body = encodeURIComponent([
-      `Nombre: ${values.nombre}`,
-      `Empresa: ${values.empresa}`,
-      `Teléfono: ${values.telefono}`,
-      "",
-      "Requerimiento:",
-      values.requerimiento
-    ].join("\n"));
+    if (values._honey) return;
+    if (![values.nombre, values.empresa, values.telefono, values.requerimiento].every((value) => value.trim())) {
+      formStatus.dataset.state = "error";
+      formStatus.textContent = "Completa todos los campos antes de enviar la solicitud.";
+      return;
+    }
 
-    formStatus.textContent = "Abriendo tu aplicación de correo para completar el envío...";
-    window.location.href = `mailto:contacto@coseex.cl?subject=${subject}&body=${body}`;
+    formSubmit.disabled = true;
+    formStatus.dataset.state = "pending";
+    formStatus.textContent = "Enviando tu solicitud...";
+
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), 15000);
+
+    try {
+      const response = await fetch(form.dataset.submitUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          _subject: `Solicitud web Coseex - ${values.empresa.trim()}`,
+          _honey: values._honey,
+          Nombre: values.nombre.trim(),
+          Empresa: values.empresa.trim(),
+          Teléfono: values.telefono.trim(),
+          Requerimiento: values.requerimiento.trim()
+        }),
+        signal: controller.signal
+      });
+      const result = await response.json();
+      if (!response.ok || (result.success !== true && result.success !== "true")) {
+        throw new Error("El servicio de formularios no confirmó el envío.");
+      }
+
+      form.reset();
+      formStatus.dataset.state = "success";
+      formStatus.textContent = "Solicitud recibida. Te contactaremos pronto.";
+    } catch {
+      formStatus.dataset.state = "error";
+      formStatus.textContent = "No pudimos enviar la solicitud. Inténtalo de nuevo o escríbenos a contacto@coseex.cl.";
+    } finally {
+      window.clearTimeout(timeout);
+      formSubmit.disabled = false;
+    }
   });
 
   const year = document.querySelector("[data-current-year]");

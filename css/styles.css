@@ -525,6 +525,8 @@ h1, h2, h3 { font-family: var(--font-display); }
 .contact-form input:focus, .contact-form textarea:focus { border-color: var(--action); background: rgba(16, 199, 207, 0.04); }
 .form-submit { width: 100%; border: 0; }
 .form-status { min-height: 22px; margin: 13px 0 0; color: var(--action-bright); font-size: 0.76rem; }
+.form-honeypot { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.form-submit:disabled { cursor: wait; opacity: 0.72; }
 
 /* Footer */
 .site-footer { padding: 35px 0; color: rgba(255, 255, 255, 0.42); background: #040708; border-top: 1px solid rgba(255, 255, 255, 0.08); }
@@ -654,6 +656,7 @@ body { background: var(--white); }
 .contact-form input::placeholder, .contact-form textarea::placeholder { color: rgba(7, 11, 12, 0.34); }
 .contact-form input:focus, .contact-form textarea:focus { background: var(--white); }
 .form-status { color: var(--action-dark); }
+.form-status[data-state="error"] { color: #9a2f2f; }
 
 .site-footer { color: rgba(7, 11, 12, 0.48); background: var(--white); border-color: var(--line-dark); }
 .footer-brand { width: 180px; height: 46px; overflow: hidden; }
