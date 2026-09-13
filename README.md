@@ -1,6 +1,6 @@
 # Landing Coseex SpA
 
-Landing page B2B estática y responsive, lista para GitHub Pages o Cloudflare Pages.
+Landing page B2B estática y responsive, publicada en `https://coseex.cl/`.
 
 ## Archivos
 
@@ -10,14 +10,17 @@ Landing page B2B estática y responsive, lista para GitHub Pages o Cloudflare Pa
 - `assets/logo-coseex.png`: logo original suministrado.
 - `assets/logo-coseex-hd.png`: versión HD optimizada para el fondo blanco del sitio.
 - `assets/hero-logistica-coseex.png`: fotografía editorial generada para el hero.
+- `assets/hero-logistica-coseex.webp`: versión optimizada que carga en la página.
 - `assets/clientes/`: logos corporativos optimizados para el carrusel continuo.
+- `sitemap.xml`: índice de las URL canónicas para buscadores.
+- `robots.txt`: indica la ubicación del sitemap; Cloudflare puede anteponer sus propias reglas administradas.
 
 ## Pendientes y puesta en marcha
 
-1. Agregar el video como `assets/video-coseex.mp4` y habilitar su `<source>` dentro del contenedor visible del hero. La fotografía actual funciona como portada mientras tanto.
-2. El formulario envía por AJAX a FormSubmit sin abrir la aplicación de correo. Hacer un envío de prueba y **confirmar el enlace de activación recibido en `contacto@coseex.cl`**. Hasta activar la dirección, FormSubmit no entregará los mensajes al buzón. Revisar también spam.
-3. Verificar la configuración DNS del correo: actualmente las consultas públicas de `coseex.cl` no muestran registros MX, aunque la casilla se reporta operativa.
-4. Los datos del formulario pasan por FormSubmit antes de llegar al correo; revisar esta decisión si se requiere un tratamiento de datos propio o se migra a un hosting con backend.
+1. El formulario envía por AJAX a FormSubmit sin abrir la aplicación de correo; la dirección `contacto@coseex.cl` y el formulario de `https://coseex.cl/` ya fueron activados y probados.
+2. Los datos del formulario pasan por FormSubmit antes de llegar al correo; revisar esta decisión si se requiere un tratamiento de datos propio o se migra a un hosting con backend.
+3. Mantener `sitemap.xml` actualizado solo cuando cambie sustancialmente la página. Su `<lastmod>` debe reflejar una fecha real de modificación.
+4. Revisar la indexación, consultas y posición media en Google Search Console una vez añadida la propiedad `coseex.cl` y enviado el sitemap.
 
 Para revisar localmente:
 
